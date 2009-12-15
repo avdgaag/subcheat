@@ -8,6 +8,22 @@ module Svm
 
     extend self
 
+    # Print help instructions
+    #--
+    # TODO: add command-line documentation for SVM subcommands.
+    def help(args)
+      if args[1] == 'svm'
+        puts help_text
+        false
+      end
+    end
+
+    # Output the current version of SVM on top of Subversion's version info.
+    def version(args)
+      puts "SVM version #{Svm::VERSION}"
+    end
+    alias_method '--version', :version
+
     # Enable switching to branch names.
     #
     #   > svn switch FB-refactor
@@ -220,6 +236,25 @@ module Svm
     def with_info
       info = `svn info`
       yield info unless info.empty?
+    end
+
+    def help_text
+      <<-EOS
+usage: svn <subcommand> [options] [args]
+Subversion command-line client for Mixe, version #{Svm::VERSION}
+
+Available SVM-specific subcommands:
+    branch
+    tag
+    rebase
+    reintegrate
+    undo
+    url
+    revision
+    cop
+    une
+    path
+      EOS
     end
   end
 end

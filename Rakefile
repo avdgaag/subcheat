@@ -7,7 +7,7 @@ begin
     gem.name = "svm"
     gem.summary = %Q{Wrapper for Subversion CLI}
     gem.description = %Q{Wrap the Subversion CLI to extract some usage patterns into commands}
-    gem.email = "info@agwebdesign.nl"
+    gem.email = "arjan@arjanvandergaag.nl"
     gem.homepage = "http://github.com/avdgaag/svm"
     gem.authors = ["Arjan van der Gaag"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
