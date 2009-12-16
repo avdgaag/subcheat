@@ -1,4 +1,4 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__) + '/../../lib')
-require 'svm'
+require 'subcheat'
 require 'test/unit/assertions'
 World(Test::Unit::Assertions)

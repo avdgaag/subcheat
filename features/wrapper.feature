@@ -6,10 +6,10 @@ Feature: invisibly wrap svn
   Scenario: pass through commands
     Given the subcommand "update"
     When I run svn
-    Then svm should run "svn update"
+    Then subcheat should run "svn update"
 
  Scenario: pass through commands with arguments
    Given the subcommand "update"
    And the arguments ". --force"
    When I run svn
-   Then svm should run "svn update . --force"
+   Then subcheat should run "svn update . --force"

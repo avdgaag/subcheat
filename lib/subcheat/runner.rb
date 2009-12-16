@@ -1,5 +1,5 @@
 require 'stringio'
-module Svm
+module Subcheat
   class Runner
 
     # Arguments to the command line client

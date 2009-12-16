@@ -1,4 +1,4 @@
-module Svm
+module Subcheat
   module Commands
     # TODO: extract into a configuration file or something
     REPO = 'https://mixe.flexvps.nl/svn/mixe'
@@ -10,17 +10,17 @@ module Svm
 
     # Print help instructions
     #--
-    # TODO: add command-line documentation for SVM subcommands.
+    # TODO: add command-line documentation for Subcheat subcommands.
     def help(args)
-      if args[1] == 'svm'
+      if args[1] == 'subcheat'
         puts help_text
         false
       end
     end
 
-    # Output the current version of SVM on top of Subversion's version info.
+    # Output the current version of Subcheat on top of Subversion's version info.
     def version(args)
-      puts "SVM version #{Svm::VERSION}"
+      puts "Subcheat version #{Subcheat::VERSION}"
     end
     alias_method '--version', :version
 
@@ -241,9 +241,9 @@ module Svm
     def help_text
       <<-EOS
 usage: svn <subcommand> [options] [args]
-Subversion command-line client for Mixe, version #{Svm::VERSION}
+Subversion command-line client for Mixe, version #{Subcheat::VERSION}
 
-Available SVM-specific subcommands:
+Available Subcheat-specific subcommands:
     branch
     tag
     rebase

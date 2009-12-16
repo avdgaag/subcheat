@@ -4,11 +4,11 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "svm"
+    gem.name = "subcheat"
     gem.summary = %Q{Wrapper for Subversion CLI}
     gem.description = %Q{Wrap the Subversion CLI to extract some usage patterns into commands}
     gem.email = "arjan@arjanvandergaag.nl"
-    gem.homepage = "http://github.com/avdgaag/svm"
+    gem.homepage = "http://github.com/avdgaag/subcheat"
     gem.authors = ["Arjan van der Gaag"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     gem.add_development_dependency "cucumber", ">= 0"
@@ -59,7 +59,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "svm #{version}"
+  rdoc.title = "subcheat #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

@@ -1,4 +1,4 @@
-= svm
+= subcheat
 
 Description goes here.
 
