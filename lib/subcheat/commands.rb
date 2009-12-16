@@ -13,14 +13,14 @@ module Subcheat
     # TODO: add command-line documentation for Subcheat subcommands.
     def help(args)
       if args[1] == 'subcheat'
-        puts help_text
+        Runner.write help_text
         false
       end
     end
 
     # Output the current version of Subcheat on top of Subversion's version info.
     def version(args)
-      puts "Subcheat version #{Subcheat::VERSION}"
+      Runner.write "Subcheat version #{Subcheat::VERSION}"
     end
     alias_method '--version', :version
 
@@ -161,19 +161,19 @@ module Subcheat
 
     # Get the current revision number
     def revision(args)
-      with_info { |info| puts info[/Revision: (\d+)/i, 1] }
+      with_info { |info| Runner.write info[/Revision: (\d+)/i, 1] }
       false
     end
 
     # Get the URL for the current working copy
     def url(args)
-      puts get_url
+      Runner.write get_url
       false
     end
 
     # Get the path inside the current repository for the current working copy
     def path(args)
-      with_info { |info| puts info[/URL: #{REPO}(.+?)$/i,1] }
+      with_info { |info| Runner.write info[/URL: #{REPO}(.+?)$/i,1] }
       false
     end
 

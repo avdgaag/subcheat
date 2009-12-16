@@ -4,12 +4,16 @@ Feature: invisibly wrap svn
   I want to use normal svn commands
 
   Scenario: pass through commands
-    Given the subcommand "update"
-    When I run svn
+    Given a working copy
+    When I run "subcheat update"
     Then subcheat should run "svn update"
 
  Scenario: pass through commands with arguments
-   Given the subcommand "update"
-   And the arguments ". --force"
-   When I run svn
+   Given a working copy
+   When I run "subcheat update . --force"
    Then subcheat should run "svn update . --force"
+
+ Scenario: pass through default command
+   Given a working copy
+   When I run "subcheat"
+   Then subcheat should run "svn help"

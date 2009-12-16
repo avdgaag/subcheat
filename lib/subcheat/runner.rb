@@ -22,7 +22,7 @@ module Subcheat
 
       # Run a command in the system.
       def run(command)
-        perform_run ? exec(command) : self.output.puts(command)
+        (perform_run.nil? || perform_run) ? exec(command) : self.write(command)
       end
     end
 
