@@ -1,9 +1,15 @@
-Feature: something something
-  In order to something something
-  A user something something
-  something something something
+Feature: invisibly wrap svn
+  In order to transparently replace svn
+  As a user
+  I want to use normal svn commands
 
-  Scenario: something something
-    Given inspiration
-    When I create a sweet new gem
-    Then everyone should see how awesome I am
+  Scenario: pass through commands
+    Given the subcommand "update"
+    When I run svn
+    Then svm should run "svn update"
+
+ Scenario: pass through commands with arguments
+   Given the subcommand "update"
+   And the arguments ". --force"
+   When I run svn
+   Then svm should run "svn update . --force"

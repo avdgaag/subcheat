@@ -1,10 +1,36 @@
+require 'stringio'
 module Svm
   class Runner
 
+    # Arguments to the command line client
     attr_reader :args
+
+    class << self
+      # Usually $stdin, but might be overridden
+      attr_accessor :output
+
+      # Shortcut method to create a new runner and
+      # and execute a command
+      def execute(*args)
+        new(*args).execute
+      end
+
+      # Print something to the output stream
+      def write(msg)
+        self.output.puts(msg)
+      end
+
+      # Run a command in the system.
+      def run(command)
+        exec command
+      end
+    end
 
     def initialize(*args)
       @args = args
+
+      # Default to $stdout
+      self.class.output = $stdout if self.class.output.nil?
 
       # Default to the help command is none is given.
       @args[0] ||= 'help'
@@ -17,21 +43,12 @@ module Svm
       end
     end
 
-    def self.execute(*args)
-      new(*args).execute
-    end
-
-    # A string representation of the command to be executed
-    def command
-      "svn #{args.join(' ')}"
-    end
-
     # Runs the target Subversion command
     def execute
       if @command_output =~ /^svn/
-        puts @command_output
+        self.run @command_output
       elsif @command_output || @command_output.nil?
-        puts 'svn', *args
+        self.run ['svn', *args].join(' ')
       end
     end
   end
