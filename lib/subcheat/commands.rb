@@ -156,7 +156,7 @@ module Subcheat
     # update --no externals
     def une(args)
       args[0] = 'update'
-      args << '--no-externals'
+      args << '--ignore-externals'
     end
 
     # Get the current revision number
