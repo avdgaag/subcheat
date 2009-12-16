@@ -1,10 +1,6 @@
 Before do
   Subcheat::Runner.output = StringIO.new
-  Subcheat::Runner.class_eval do
-    def run(command)
-      self.class.write command
-    end
-  end
+  Subcheat::Runner.perform_run = false
 end
 
 Given /^the subcommand "([^\"]*)"$/ do |subcommand|

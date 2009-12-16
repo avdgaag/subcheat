@@ -7,7 +7,7 @@ module Subcheat
 
     class << self
       # Usually $stdin, but might be overridden
-      attr_accessor :output
+      attr_accessor :output, :perform_run
 
       # Shortcut method to create a new runner and
       # and execute a command
@@ -22,7 +22,7 @@ module Subcheat
 
       # Run a command in the system.
       def run(command)
-        exec command
+        perform_run ? exec(command) : self.output.puts(command)
       end
     end
 
