@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Subcheat &ndash; a simple svn wrapper, by Arjan van der Gaag</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <meta name="Content-Language" content="en-GB">
+        <meta name="copyright" content="© copyright 2009 Arjan van der Gaag">
+        <meta name="author" content="Arjan van der Gaag">
+        <style type="text/css">
+            body{       background:#fff;font:14px/20px Helvetica,Arial,sans-serif;color:#444;margin:10% 20%;}
+            a:link{     color:#399;text-decoration:none;font-weight:bold;}
+            h1,p,ul{    margin:20px 0;}
+            p.leader{   font-size:16px;}
+            h1,p.leader{color:#222;}
+            code{       font:13px/20px "Courier New",Courier,monospace;}
+            small{      color:#999;}
+            p.meta{     color:#999;font-size:11px;margin-top:-10px;margin-bottom:30px;}
+        </style>
+    </head>
+    <body>
+        <div id="page">
+            <h1><a href="http://github.com/avdgaag/subcheat/">Subcheat</a></h1>
+            <p class="meta">&copy; 2009 Arjan van der Gaag</p>
+            <p class="leader">A simple wrapper around <a href="http://subversion.tigris.org/" title="">Subversion</a>’s <code>svn</code> that adds a little extra power.</p>
+            <p>Subcheat adds a few extra subcommands to <code>svn</code> and sprinkles a wee bit of magic fairy dust om some existing ones. Check it out:</p>
+            <ul>
+                <li><code>svn undo</code>: roll back a revision or range of revisions.</li>
+                <li><code>svn branch</code>: list, create or delete branches.</li>
+                <li><code>svn tag</code>: list, create or delete tags.</li>
+                <li><code>svn rebase</code>: merge changes from trunk back into the current branch.</li>
+                <li><code>svn reintegrate</code>: merge changes from your branch back into trunk.</li>
+            </ul>
+            <p><strong>To get started</strong>: install the subcheat Ruby gem: <code>gem install subcheat</code> <small>(not available yet, install manually for now)</small>, then alias <code>subcheat</code> to <code>svn</code>: <code>alias svn=subcheat</code>. You can now use all the normal <code>svn</code>-commands &ndash; and then some!</p>
+            <p>More documentation is coming up. <a href="http://github.com/avdgaag/Subcheat">Browse the source code</a> for more information.</p>
+        </div>
+    </body>
+</html>
