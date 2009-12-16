@@ -46,9 +46,9 @@ module Subcheat
     # Runs the target Subversion command
     def execute
       if @command_output =~ /^svn/
-        self.run @command_output
+        self.class.run @command_output
       elsif @command_output || @command_output.nil?
-        self.run ['svn', *args].join(' ')
+        self.class.run ['svn', *args].join(' ')
       end
     end
   end
