@@ -13,7 +13,7 @@
 # This will merge from 5032:HEAD.
 Subcheat::Command.define('rebase') do
   raise 'You can only rebase a branch working copy.' unless attr('URL') =~ /branches/
-  logs = `svn log --stop-on-copy` unless arguments[0]
+  logs = log('.', '--stop-on-copy') unless arguments[0]
   if logs
     branch_point = logs.scan(/^r(\d+) \|/).flatten.last
   else
@@ -37,12 +37,12 @@ end
 #
 # This will merge in changes from the branch from range 5032:HEAD.
 Subcheat::Command.define('reintegrate') do
-  # TODO: make sure to get the correct logs (not from current, which should be trunk)
-  logs = `svn log --stop-on-copy` unless arguments[1]
+  branch_url = "#{base_url}branches/#{arguments[0]}"
+  logs = log(branch_url, '--stop-on-copy') unless arguments[1]
   if logs
     branch_point = logs.scan(/^r(\d+) \|/).flatten.last
   else
     raise 'Could not calculate branch starting point. Please provide explicitly.' unless arguments[1]
   end
-  "svn merge -r #{(arguments[1] || branch_point)}:HEAD #{base_url}branches/#{arguments[0]} ."
+  "svn merge -r #{(arguments[1] || branch_point)}:HEAD #{branch_url} ."
 end

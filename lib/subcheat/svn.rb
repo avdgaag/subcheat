@@ -19,6 +19,10 @@ module Subcheat
         info[/^#{name}: (.+?)$/, 1]
       end
 
+      def log(repo, *arguments)
+        svn("log #{repo} #{[*arguments].join(' ')}")
+      end
+
       def info
         @info ||= svn('info')
       end
