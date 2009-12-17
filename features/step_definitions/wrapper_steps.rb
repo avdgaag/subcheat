@@ -12,7 +12,7 @@ Given /^a working copy with ([^:]+?): (.+?)$/ do |attribute, value|
 end
 
 When /^I run "subcheat([^\"]*)"$/ do |arguments|
-  Subcheat::Runner.execute(*arguments.strip.split(/\s+/))
+  Subcheat::Runner.new(*arguments.strip.split(/\s+/))
 end
 
 Then /^subcheat should run "([^\"]*)"$/ do |command|
