@@ -12,12 +12,12 @@
 #
 # This will merge from 5032:HEAD.
 Subcheat::Command.define('rebase') do
-  raise 'You can only rebase a branch working copy.' unless attr('URL') =~ /branches/
+  raise Subcheat::CommandException, 'You can only rebase a branch working copy.' unless attr('URL') =~ /branches/
   logs = log('.', '--stop-on-copy') unless arguments[0]
   if logs
     branch_point = logs.scan(/^r(\d+) \|/).flatten.last
   else
-    raise 'Could not calculate branch starting point. Please provide explicitly.' unless arguments[0]
+    raise Subcheat::CommandException, 'Could not calculate branch starting point. Please provide explicitly.' unless arguments[0]
   end
   "svn merge -r #{(arguments[0] || branch_point)}:HEAD #{base_url}trunk ."
 end
@@ -42,7 +42,7 @@ Subcheat::Command.define('reintegrate') do
   if logs
     branch_point = logs.scan(/^r(\d+) \|/).flatten.last
   else
-    raise 'Could not calculate branch starting point. Please provide explicitly.' unless arguments[1]
+    raise Subcheat::CommandException, 'Could not calculate branch starting point. Please provide explicitly.' unless arguments[1]
   end
   "svn merge -r #{(arguments[1] || branch_point)}:HEAD #{branch_url} ."
 end

@@ -1,8 +1,6 @@
 module Subcheat
   class Svn
 
-    NotAWorkingCopy = Class.new(Exception)
-
     attr_accessor :arguments
 
     def initialize(arguments)
@@ -31,7 +29,7 @@ module Subcheat
 
       def svn(subcommand)
         output = `svn #{subcommand}`
-        raise NotAWorkingCopy if output.empty?
+        raise Subcheat::NotAWorkingCopy if output.empty?
         output
       end
     end

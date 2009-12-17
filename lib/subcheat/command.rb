@@ -2,8 +2,6 @@ module Subcheat
   class Command
     attr_reader :subcommand, :arguments, :svn
 
-    NoSuchCommand = Class.new(Exception)
-
     @commands = []
 
     class << self

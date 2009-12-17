@@ -13,7 +13,7 @@
 # Create branch 'FB-refactor'
 Subcheat::Command.define('branch') do
   if delete = arguments.delete("-d")
-    raise 'No URL to delete given.' unless arguments[0]
+    raise Subcheat::CommandException, 'No URL to delete given.' unless arguments[0]
     "svn delete %sbranches/%s %s" % [
       attr('URL'),
       arguments[0],
@@ -45,7 +45,7 @@ end
 # Create tag 'REL-1.0'
 Subcheat::Command.define('tag') do
   if delete = arguments.delete("-d")
-    raise 'No URL to delete given.' unless arguments[0]
+    raise Subcheat::CommandException, 'No URL to delete given.' unless arguments[0]
     "svn delete %tags/%s %s" % [
       attr('URL'),
       arguments[0],

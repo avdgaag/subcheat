@@ -32,10 +32,12 @@ module Subcheat
       else
         begin
           self.class.run Command.on(subcommand).call(Svn.new(arguments))
-        rescue Svn::NotAWorkingCopy
+        rescue NotAWorkingCopy
           # ...
-        rescue Command::NoSuchCommand
+        rescue NoSuchCommand
           self.class.run "svn #{subcommand} #{arguments.join(' ')}".strip
+        rescue CommandException
+          puts $!
         end
       end
     end

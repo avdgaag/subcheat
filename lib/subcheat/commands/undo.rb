@@ -15,7 +15,7 @@ Subcheat::Command.define('undo') do
     when /^\d+$/: "#{revision}:#{revision.to_i - 1}"
     when /^\d+:\d+$/: revision.split(':').reverse.join(':')
     else
-      raise "Bad revision: #{revision}"
+      raise Subcheat::CommandException, "Bad revision: #{revision}"
   end
   url ||= attr('URL')
   "svn merge -r #{revision} #{url}"
