@@ -4,16 +4,16 @@ Feature: new subcheat subcommands
   I want to use simple commands for complex patterns
 
   Scenario: rolling back a commit
-    Given a working copy with url: foo
+    Given a working copy with attribute URL: foo
     When I run "subcheat undo 50"
     Then subcheat should run "svn merge -r 50:49 foo"
 
   Scenario: rolling back a commit from a different URL
-    Given a working copy with url: foo
+    Given a working copy with attribute URL: foo
     When I run "subcheat undo 50 bar"
     Then subcheat should run "svn merge -r 50:49 bar"
 
   Scenario: rolling back a range of commits
-    Given a working copy with url: foo
+    Given a working copy with attribute URL: foo
     When I run "subcheat undo 50:60"
     Then subcheat should run "svn merge -r 60:50 foo"
