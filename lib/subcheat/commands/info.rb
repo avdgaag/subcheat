@@ -1,15 +1,15 @@
 Subcheat::Command.define('url') do
-  info[/URL: (.+)$/i, 1]
+  attr('URL')
 end
 
 Subcheat::Command.define('revision') do
-  info[/Revision: (\d+)/i, 1]
+  attr('Revision')
 end
 
 Subcheat::Command.define('path') do
-  info[/URL: (.+)$/i, 1].sub(info[/Repository Root: (.+)$/i, 1], '')
+  attr('URL').sub(attr('Repository Root'), '')
 end
 
 Subcheat::Command.define('root') do
-  info[/Repository Root: (.+)$/i, 1]
+  attr('Repository Root')
 end

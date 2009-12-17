@@ -1,9 +1,5 @@
-require 'stringio'
 module Subcheat
   class Runner
-
-    # Arguments to the command line client
-    attr_reader :args
 
     class << self
       # Usually $stdin, but might be overridden
@@ -15,20 +11,18 @@ module Subcheat
       end
 
       # Run a command in the system.
+      # Setting +perform_run+ to false will make it just output the command,
+      # rather than executing it.
       def run(command)
-        # (perform_run.nil? || perform_run) ? exec(command) : self.write(command)
-        self.write(command)
+        (perform_run.nil? || perform_run) ? exec(command) : self.write(command)
       end
     end
 
     def initialize(*args)
-      @args = args
-
-      @svn = Svn.new
-
       # Default to $stdout
       self.class.output = $stdout if self.class.output.nil?
 
+      # Gather subcommand and arguments
       subcommand, *arguments = args
       subcommand ||= 'help'
       arguments  ||= []
@@ -37,7 +31,7 @@ module Subcheat
         puts Subcheat::VERSION
       else
         begin
-          self.class.run Command.on(subcommand).call(@svn, arguments)
+          self.class.run Command.on(subcommand).call(Svn.new(arguments))
         rescue Svn::NotAWorkingCopy
           # ...
         rescue Command::NoSuchCommand

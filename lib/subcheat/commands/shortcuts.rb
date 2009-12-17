@@ -33,7 +33,7 @@ end
 Subcheat::Command.define('export') do
   if arguments[0] =~ /^[a-zA-Z\-_0-9]+$/
     "svn export %stags/%s %s" % [
-      info[/^URL: (.+?)$/, 1].split(/trunk|tags|branches/).first,
+      base_url,
       arguments[0],
       arguments[1..-1].join(' ')
     ]
@@ -48,7 +48,7 @@ end
 Subcheat::Command.define('switch') do
   if arguments[0] =~ /^[a-zA-Z\-_0-9]+$/
     "svn switch %sbranches/%s %s" % [
-      info[/^URL: (.+?)$/, 1].split(/trunk|tags|branches/).first,
+      base_url,
       arguments[0],
       arguments[1..-1].join(' ')
     ]

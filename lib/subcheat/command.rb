@@ -22,8 +22,7 @@ module Subcheat
       @subcommand, @method = subcommand, block
     end
 
-    def call(svn, arguments)
-      svn.arguments = arguments
+    def call(svn)
       svn.instance_eval(&@method)
     end
   end

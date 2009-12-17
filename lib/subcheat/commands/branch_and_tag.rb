@@ -15,16 +15,16 @@ Subcheat::Command.define('branch') do
   if delete = arguments.delete("-d")
     raise 'No URL to delete given.' unless arguments[0]
     "svn delete %sbranches/%s %s" % [
-      info[/^URL: (.+?)$/, 1],
+      attr('URL'),
       arguments[0],
       arguments[1..-1].join(' ')
     ]
   elsif list = arguments.delete('-l') || !arguments.any?
-    "svn list #{info[/^URL: (.+?)$/, 1].split(/trunk|branches|tags/).first}branches/"
+    "svn list #{base_url}branches/"
   else
     "svn copy %s %s %s" % [
-      info[/^URL: (.+?)$/, 1],
-      info[/^URL: (.+?)$/, 1].split(/trunk|branches|tags/).first + "branches/#{arguments[0]}",
+      attr('URL'),
+      base_url + "branches/#{arguments[0]}",
       arguments[1..-1].join(' ')
     ]
   end
@@ -47,16 +47,16 @@ Subcheat::Command.define('tag') do
   if delete = arguments.delete("-d")
     raise 'No URL to delete given.' unless arguments[0]
     "svn delete %tags/%s %s" % [
-      info[/^URL: (.+?)$/, 1],
+      attr('URL'),
       arguments[0],
       arguments[1..-1].join(' ')
     ]
   elsif list = arguments.delete('-l') || !arguments.any?
-    "svn list #{info[/^URL: (.+?)$/, 1].split(/trunk|branches|tags/).first}tags/"
+    "svn list #{base_url}tags/"
   else
     "svn copy %s %s %s" % [
-      info[/^URL: (.+?)$/, 1],
-      info[/^URL: (.+?)$/, 1].split(/trunk|branches|tags/).first + "tags/#{arguments[0]}",
+      attr('URL'),
+      base_url + "tags/#{arguments[0]}",
       arguments[1..-1].join(' ')
     ]
   end

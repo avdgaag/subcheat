@@ -17,6 +17,6 @@ Subcheat::Command.define('undo') do
     else
       raise "Bad revision: #{revision}"
   end
-  url ||= info[/^URL: (.+?)$/, 1]
+  url ||= attr('URL')
   "svn merge -r #{revision} #{url}"
 end
