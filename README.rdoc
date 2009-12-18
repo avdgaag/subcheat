@@ -1,0 +1,92 @@
+= subcheat
+
+Subcheat is a simple wrapper around Subversion's svn command-line client.
+
+<b>This is hobby project I'm hacking away on. Poke around at your own peril.</b>
+
+== Description
+
+<tt>subcheat</tt> functions the same way svn does. You could alias <tt>subcheat</tt> to <tt>svn</tt> and use <tt>subcheat</tt> from now on without ever noticing it.
+
+<tt>subcheat</tt> adds some subcommands that can make your life a little easier:
+
+* <tt>subcheat undo</tt>: roll-back a commit or range of commits.
+* <tt>subcheat tag</tt>: create, show or delete tags
+* <tt>subcheat branch</tt>: create, show or delete branches
+* <tt>subcheat reintegrate</tt>: merge changes from a branch back into trunk
+* <tt>subcheat rebase</tt>: merge changes from trunk into current branch
+
+Also, some existing subcommands are enhanced:
+
+* <tt>subcheat export</tt>: now expands simple tag names to tag URLs
+* <tt>subcheat switch</tt>: now expands simple branch names to branch URLs
+
+=== Examples
+
+Rolling back a commit is basically reverse-merging a revision into the current working copy. The following are equivalent:
+
+  subcheat undo 5000
+  svn merge -r 5000:4999 url/to/current/repo
+
+Managing branches and tags are basic <tt>copy</tt> and <tt>list</tt> operations. The following are equivalent:
+
+  # assume we're in /svn/project/trunk
+  subcheat branch foo
+  svn copy /svn/project/trunk /svn/project/branches/foo
+
+  subcheat branch -d foo
+  svn delete /svn/project/branches/foo
+
+  subcheat branch
+  svn list /svn/project/branches
+
+Note that tags and branches work the same but operate on the +tags+ and +branches+ subdirectories respectively.
+
++reintegrate+ and +rebase+ are two similar tools for managing feature branches. These basically merge changes from a branch into trunk, or the other way around. These commands first determine the revision number that created the branch and then merge from that revision to +HEAD+. So, the following are equivalent:
+
+  # Subcheat
+  subcheat reintegrate foo
+
+  # Regular
+  svn log /svn/project/branches/foo --stop-on-copy
+  # note that revision number that created the branch is 5000
+  svn merge -r 5000:HEAD /svn/project/branches/foo .
+
+Both +reintegrate+ and +rebase+ can accept a revision number as an argument to start the revision range to merge somewhere other than the branch starting point.
+
+== Installation
+
+This project will some day be released as a gem, so you can install it as easily as <tt>sudo gem install subcheat</tt>, but for now you will have to clone the project itself and include <tt>./bin/subcheat</tt> in your path in some way.
+
+Once you've got it set up, you should really alias <tt>svn</tt> to subcheat in your shell.
+
+== Assumptions
+
+Subcheat assumes a particular layout for your repository:
+
+  [root]
+   `- project1
+      `- trunk
+      `- branches
+      `- tags
+   `- project2
+      `- trunk
+      `- branches
+      `- tags
+   `- ...
+
+It might some day be made more flexible, but this works for me right now.
+
+== Note on Patches/Pull Requests
+
+* Fork the project.
+* Make your feature addition.
+* Add tests for it. This is important so I don't break it in a
+  future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.
+  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+== Copyright
+
+Copyright (c) 2009 Arjan van der Gaag. See LICENSE for details.
