@@ -52,6 +52,9 @@ module Subcheat
     @commands = []
 
     class << self
+      # List of all available commands
+      attr_reader :commands
+
       #:call-seq: define(subcommand, &block)
       #
       # Shortcut method to creating and registering a new +Command+ object.

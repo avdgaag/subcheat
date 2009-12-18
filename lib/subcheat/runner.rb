@@ -58,7 +58,7 @@ module Subcheat
       arguments  ||= []
 
       if %w{version --version -v}.include?(subcommand)
-        puts Subcheat::VERSION
+        self.class.write Subcheat::VERSION
       else
         begin
           self.class.run Command.on(subcommand).call(Svn.new(arguments))
