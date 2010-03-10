@@ -15,6 +15,10 @@ Subcheat is a simple wrapper around Subversion's svn command-line client.
 * <tt>subcheat branch</tt>: create, show or delete branches
 * <tt>subcheat reintegrate</tt>: merge changes from a branch back into trunk
 * <tt>subcheat rebase</tt>: merge changes from trunk into current branch
+* <tt>subcheat url</tt>: output the current working copy URL
+* <tt>subcheat root</tt>: output the current project root folder
+* <tt>subcheat path</tt>: output the current path in the repository
+* <tt>subcheat revision</tt>: output the current revision number
 
 Also, some existing subcommands are enhanced:
 

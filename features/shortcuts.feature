@@ -5,7 +5,7 @@ Feature: Subversion shortcuts
 
   Scenario: updating without externals
     Given a working copy
-    When I run "subcheat une"
+    When I run "subcheat uie"
     Then subcheat should run "svn update --ignore-externals"
 
   Scenario: get common working copy information
