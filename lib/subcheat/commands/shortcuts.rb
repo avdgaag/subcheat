@@ -1,4 +1,4 @@
-Subcheat::Command.define('une') do
+Subcheat::Command.define('uie') do
   "svn update --ignore-externals #{arguments.join(' ')}"
 end
 
@@ -15,6 +15,7 @@ end
 #
 #   > svn cop my-project new-dir
 Subcheat::Command.define('cop') do
+  raise 'NYI'
   url = 'http://repo/' + arguments[0]
   url += '/trunk' unless url =~ /trunk|tags|branches/
   dir = arguments[0].gsub(/^www\.|\.(?:nl|fr|be|com).*$/i, '')

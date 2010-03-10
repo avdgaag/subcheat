@@ -48,6 +48,9 @@ module Subcheat
     # Name of the subcommand to which this command should respond.
     attr_reader :subcommand
 
+    # Should the output be executed as a shell command, or printed?
+    attr_reader :execute
+
     # List of available commands that can be invoked.
     @commands = []
 
@@ -83,8 +86,8 @@ module Subcheat
       end
     end
 
-    def initialize(subcommand, &block) #:nodoc:
-      @subcommand, @method = subcommand, block
+    def initialize(subcommand, execute = true, &block) #:nodoc:
+      @subcommand, @execute, @method = subcommand, execute, block
     end
 
     # Invoke the +Command+'s method to generate and return a subversion CLI
@@ -93,6 +96,7 @@ module Subcheat
     # This requires an instance of <tt>Subcheat::Svn</tt> to be passed in,
     # which will be used as context to execute the method in.
     def call(svn)
+      Subcheat::Runner.perform_run = false unless execute
       svn.instance_eval(&@method)
     end
   end

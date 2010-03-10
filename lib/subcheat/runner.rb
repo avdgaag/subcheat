@@ -57,18 +57,14 @@ module Subcheat
       subcommand ||= 'help'
       arguments  ||= []
 
-      if %w{version --version -v}.include?(subcommand)
-        self.class.write Subcheat::VERSION
-      else
-        begin
-          self.class.run Command.on(subcommand).call(Svn.new(arguments))
-        rescue NotAWorkingCopy
-          # ...
-        rescue NoSuchCommand
-          self.class.run "svn #{subcommand} #{arguments.join(' ')}".strip
-        rescue CommandException
-          puts $!
-        end
+      begin
+        self.class.run Command.on(subcommand).call(Svn.new(arguments))
+      rescue NotAWorkingCopy
+        # ...
+      rescue NoSuchCommand
+        self.class.run "svn #{subcommand} #{arguments.join(' ')}".strip
+      rescue CommandException
+        puts $!
       end
     end
   end
