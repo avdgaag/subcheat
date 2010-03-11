@@ -11,22 +11,16 @@
 #   > svn branch FB-refactor
 #
 # Create branch 'FB-refactor'
-subcommand :branch do
-  if delete = arguments.delete("-d")
-    raise Subcheat::CommandException, 'No URL to delete given.' unless arguments[0]
-    "svn delete %sbranches/%s %s" % [
-      attr('URL'),
-      arguments[0],
-      arguments[1..-1].join(' ')
-    ]
-  elsif list = arguments.delete('-l') || !arguments.any?
+subcommand :branch do |opts|
+  opts.banner = "Usage: subcheat branch [options] [branch_name]"
+  opts.on('-d', '--delete BRANCH_NAME', 'Delete a branch') do |branch|
+    "svn delete %sbranches/%s %s" % [attr('URL'), branch, arguments[1..-1].join(' ')]
+  end
+  opts.on('-l', '--list', 'List branches') do
     "svn list #{base_url}branches/"
-  else
-    "svn copy %s %s %s" % [
-      attr('URL'),
-      base_url + "branches/#{arguments[0]}",
-      arguments[1..-1].join(' ')
-    ]
+  end
+  opts.on('-c', '--create BRANCH_NAME', 'Create new branch') do |branch|
+    "svn copy %s %s %s" % [attr('URL'), base_url + "branches/#{branch}", arguments[1..-1].join(' ')]
   end
 end
 
@@ -43,21 +37,15 @@ end
 #   > svn tag REL-1.0
 #
 # Create tag 'REL-1.0'
-subcommand :tag do
-  if delete = arguments.delete("-d")
-    raise Subcheat::CommandException, 'No URL to delete given.' unless arguments[0]
-    "svn delete %tags/%s %s" % [
-      attr('URL'),
-      arguments[0],
-      arguments[1..-1].join(' ')
-    ]
-  elsif list = arguments.delete('-l') || !arguments.any?
+subcommand :tag do |opts|
+  opts.banner = "Usage: subcheat tag [options] [tag_name]"
+  opts.on('-d', '--delete TAG_NAME', 'Delete a tag') do |tag|
+    "svn delete %tags/%s %s" % [attr('URL'), tag, arguments[1..-1].join(' ')]
+  end
+  opts.on('-l', '--list', 'List tags') do
     "svn list #{base_url}tags/"
-  else
-    "svn copy %s %s %s" % [
-      attr('URL'),
-      base_url + "tags/#{arguments[0]}",
-      arguments[1..-1].join(' ')
-    ]
+  end
+  opts.on('-c', '--create TAG_NAME', 'Create new tag') do |tag|
+    "svn copy %s %s %s" % [attr('URL'), base_url + "tags/#{tag}", arguments[1..-1].join(' ')]
   end
 end
