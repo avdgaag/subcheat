@@ -1,25 +1,37 @@
 # Require all subcheat components
-%w{exceptions runner svn command}.each do |filename|
+%w{runner subversion_working_copy command text_command commander}.each do |filename|
   require File.join(File.dirname(__FILE__), 'subcheat', filename)
 end
 
 module Subcheat
-  # General-purpose program-specific exception.
   Exception        = Class.new(Exception)
-
-  # Raised when looking for a custom command that does not exist.
   NoSuchCommand    = Class.new(Exception)
-
-  # Raised when trying to have subversion work on a directory
-  # that is not a working copy.
   NotAWorkingCopy  = Class.new(Exception)
-
-  # General-purpose exception that commands can raise to halt execution.
   CommandException = Class.new(Exception)
+
+  # Syntactic sugar
+  def run(*args)
+    begin
+      Commander.new(args).run(Svn.new)
+    rescue NotAWorkingCopy
+      Subcheat.puts 'This is not a valid working copy.'
+    rescue NoSuchCommand
+      exec 'svn', subcommand, arguments
+    rescue CommandException
+      Subcheat.puts $!
+    end
+  end
 
   # Report the version number from /VERSION
   def version
     File.read(File.join(File.dirname(__FILE__), *%w{.. VERSION}))
   end
+
+  # Central location for outputting stuff, so it can be mocked 'n stuff
+  def puts(*args)
+    puts *args
+  end
+
+  # Syntactic sugar
   extend self
 end

@@ -1,4 +1,4 @@
-subcommand :uie do
+subcommand :uie do |svn|
   svn.update('--ignore-externals', *arguments)
 end
 
@@ -10,7 +10,7 @@ end
 # def export(args)
 #   args[1] = project_root_url + '/tags/' + args[1] if args[1] =~ /^[a-zA-Z\-_0-9]+$/
 # end
-subcommand :export do
+subcommand :export do |svn|
   if arguments[0] =~ /^[a-zA-Z\-_0-9]+$/
     svn.export(("%stags/%s" % [base_url, arguments.shift]), *arguments)
   end
@@ -21,7 +21,7 @@ end
 #   > svn switch FB-refactor
 #
 # This will now switch the current working copy to the 'FB-refactor' branch.
-subcommand :switch do
+subcommand :switch do |svn|
   if arguments[0] =~ /^[a-zA-Z\-_0-9]+$/
     svn.switch(("%stags/%s" % [base_url, arguments.shift]), *arguments)
   end

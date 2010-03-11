@@ -11,7 +11,7 @@
 #   > svn rebase 5032
 #
 # This will merge from 5032:HEAD.
-subcommand :rebase do
+subcommand :rebase do |svn|
   raise Subcheat::CommandException, 'You can only rebase a branch working copy.' unless attr('URL') =~ /branches/
   logs = log('.', '--stop-on-copy') unless arguments[0]
   if logs
@@ -36,7 +36,7 @@ end
 #   > svn reintegrate FB-refactor 5032
 #
 # This will merge in changes from the branch from range 5032:HEAD.
-subcommand :reintegrate do
+subcommand :reintegrate do |svn|
   branch_url = "#{base_url}branches/#{arguments[0]}"
   logs = log(branch_url, '--stop-on-copy') unless arguments[1]
   if logs
