@@ -1,26 +1,5 @@
 subcommand :uie do
-  "svn update --ignore-externals #{arguments.join(' ')}"
-end
-
-# Check Out Project: shortcut to check out a working copy from the repository
-#
-#   > svn cop my-project
-#
-# This will checkout the ^/my-project/trunk folder to the my-project dir in
-# the current directory. You may specify a specific branch or tags:
-#
-#   > svn cop my-project/tags/REL-1.0
-#
-# You may also specify the directory name to create the new working copy in:
-#
-#   > svn cop my-project new-dir
-subcommand :cop do
-  raise 'NYI'
-  url = 'http://repo/' + arguments[0]
-  url += '/trunk' unless url =~ /trunk|tags|branches/
-  dir = arguments[0].gsub(/^www\.|\.(?:nl|fr|be|com).*$/i, '')
-  arguments.insert(1, dir) if (arguments[1] && arguments[1] =~ /^-+/) || arguments[1].nil?
-  "svn checkout #{url} #{arguments[1..-1].join(' ')}"
+  svn.update('--ignore-externals', *arguments)
 end
 
 # Enable exporting of tags
@@ -33,11 +12,7 @@ end
 # end
 subcommand :export do
   if arguments[0] =~ /^[a-zA-Z\-_0-9]+$/
-    "svn export %stags/%s %s" % [
-      base_url,
-      arguments[0],
-      arguments[1..-1].join(' ')
-    ]
+    svn.export(("%stags/%s" % [base_url, arguments.shift]), *arguments)
   end
 end
 
@@ -48,10 +23,6 @@ end
 # This will now switch the current working copy to the 'FB-refactor' branch.
 subcommand :switch do
   if arguments[0] =~ /^[a-zA-Z\-_0-9]+$/
-    "svn switch %sbranches/%s %s" % [
-      base_url,
-      arguments[0],
-      arguments[1..-1].join(' ')
-    ]
+    svn.switch(("%stags/%s" % [base_url, arguments.shift]), *arguments)
   end
 end

@@ -18,5 +18,5 @@ subcommand :undo do
       raise Subcheat::CommandException, "Bad revision: #{revision}"
   end
   url ||= attr('URL')
-  "svn merge -r #{revision} #{url}"
+  svn.merge('-r', revision, url)
 end

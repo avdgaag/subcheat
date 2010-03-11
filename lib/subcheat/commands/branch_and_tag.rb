@@ -14,13 +14,13 @@
 subcommand :branch do |opts|
   opts.banner = "Usage: subcheat branch [options] [branch_name]"
   opts.on('-d', '--delete BRANCH_NAME', 'Delete a branch') do |branch|
-    "svn delete %sbranches/%s %s" % [attr('URL'), branch, arguments[1..-1].join(' ')]
+    svn.delete('%branches/%s' % [attr('URL'), branch], *arguments)
   end
   opts.on('-l', '--list', 'List branches') do
-    "svn list #{base_url}branches/"
+    svn.list("#{base_url}branches/")
   end
   opts.on('-c', '--create BRANCH_NAME', 'Create new branch') do |branch|
-    "svn copy %s %s %s" % [attr('URL'), base_url + "branches/#{branch}", arguments[1..-1].join(' ')]
+    svn.copy(attr('URL'), "#{base_url}branches/#{branch}", *arguments)
   end
 end
 
@@ -40,12 +40,12 @@ end
 subcommand :tag do |opts|
   opts.banner = "Usage: subcheat tag [options] [tag_name]"
   opts.on('-d', '--delete TAG_NAME', 'Delete a tag') do |tag|
-    "svn delete %tags/%s %s" % [attr('URL'), tag, arguments[1..-1].join(' ')]
+    svn.delete('%tags/%s' % [attr('URL'), tag], *arguments)
   end
   opts.on('-l', '--list', 'List tags') do
-    "svn list #{base_url}tags/"
+    svn.list("#{base_url}tags/")
   end
   opts.on('-c', '--create TAG_NAME', 'Create new tag') do |tag|
-    "svn copy %s %s %s" % [attr('URL'), base_url + "tags/#{tag}", arguments[1..-1].join(' ')]
+    svn.copy(attr('URL'), "#{base_url}tags/#{tag}", *arguments)
   end
 end

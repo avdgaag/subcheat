@@ -19,7 +19,7 @@ subcommand :rebase do
   else
     raise Subcheat::CommandException, 'Could not calculate branch starting point. Please provide explicitly.' unless arguments[0]
   end
-  "svn merge -r #{(arguments[0] || branch_point)}:HEAD #{base_url}trunk ."
+  svn.merge('-r', "#{(arguments[0] || branch_point)}:HEAD", "#{base_url}trunk", '.')
 end
 
 # Merge changes from a branch back into trunk.
@@ -44,5 +44,5 @@ subcommand :reintegrate do
   else
     raise Subcheat::CommandException, 'Could not calculate branch starting point. Please provide explicitly.' unless arguments[1]
   end
-  "svn merge -r #{(arguments[1] || branch_point)}:HEAD #{branch_url} ."
+  svn.merge('-r', "#{(arguments[1] || branch_point)}:HEAD", branch_url, ".")
 end
