@@ -1,4 +1,4 @@
-Subcheat::Command.define('uie') do
+subcommand :uie do
   "svn update --ignore-externals #{arguments.join(' ')}"
 end
 
@@ -14,7 +14,7 @@ end
 # You may also specify the directory name to create the new working copy in:
 #
 #   > svn cop my-project new-dir
-Subcheat::Command.define('cop') do
+subcommand :cop do
   raise 'NYI'
   url = 'http://repo/' + arguments[0]
   url += '/trunk' unless url =~ /trunk|tags|branches/
@@ -31,7 +31,7 @@ end
 # def export(args)
 #   args[1] = project_root_url + '/tags/' + args[1] if args[1] =~ /^[a-zA-Z\-_0-9]+$/
 # end
-Subcheat::Command.define('export') do
+subcommand :export do
   if arguments[0] =~ /^[a-zA-Z\-_0-9]+$/
     "svn export %stags/%s %s" % [
       base_url,
@@ -46,7 +46,7 @@ end
 #   > svn switch FB-refactor
 #
 # This will now switch the current working copy to the 'FB-refactor' branch.
-Subcheat::Command.define('switch') do
+subcommand :switch do
   if arguments[0] =~ /^[a-zA-Z\-_0-9]+$/
     "svn switch %sbranches/%s %s" % [
       base_url,

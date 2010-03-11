@@ -1,20 +1,20 @@
-Subcheat::Command.define('url', false) do
+textcommand :url do
   attr('URL')
 end
 
-Subcheat::Command.define('revision', false) do
+textcommand :revision do
   attr('Revision')
 end
 
-Subcheat::Command.define('path', false) do
+textcommand :path do
   attr('URL').sub(attr('Repository Root'), '')
 end
 
-Subcheat::Command.define('root', false) do
+textcommand :root do
   attr('Repository Root')
 end
 
-Subcheat::Command.define('--version') do
+subcommand :'--version' do
   puts 'Subcheat ' + Subcheat.version
   'svn --version'
 end

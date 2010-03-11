@@ -9,7 +9,7 @@
 # is the current working copy URL by default, but you may specify your own:
 #
 #   > svn undo 5034 ^/my-project/trunk
-Subcheat::Command.define('undo') do
+subcommand :undo do
   revision, url = arguments[0], arguments[1]
   revision = case revision
     when /^\d+$/: "#{revision}:#{revision.to_i - 1}"
