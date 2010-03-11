@@ -1,5 +1,5 @@
 # Require all subcheat components
-%w{runner subversion_working_copy command text_command commander}.each do |filename|
+%w{subversion_working_copy command text_command commander}.each do |filename|
   require File.join(File.dirname(__FILE__), 'subcheat', filename)
 end
 
@@ -12,7 +12,7 @@ module Subcheat
   # Syntactic sugar
   def run(*args)
     begin
-      Commander.new(args).run(Svn.new)
+      Commander.new(args).run(SubversionWorkingCopy.new(Dir.pwd))
     rescue NotAWorkingCopy
       Subcheat.puts 'This is not a valid working copy.'
     rescue NoSuchCommand
@@ -29,7 +29,7 @@ module Subcheat
 
   # Central location for outputting stuff, so it can be mocked 'n stuff
   def puts(*args)
-    puts *args
+    STDOUT.puts *args
   end
 
   # Syntactic sugar
