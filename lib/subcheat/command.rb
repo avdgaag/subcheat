@@ -12,14 +12,14 @@ module Subcheat
     end
 
     def run(svn)
-      run_prerequisites
+      run_prerequisites(svn)
       system(@method.call(svn))
     end
 
   protected
 
-    def run_prerequisites
-      prerequisites.map { |c| c.run }
+    def run_prerequisites(svn)
+      prerequisites.map { |c| c.run(svn) }
     end
   end
 end
