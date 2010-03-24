@@ -1,6 +1,6 @@
 require 'helper'
 
-class TestRunner < Test::Unit::TestCase
+class TestSubversionWorkingCopy < Test::Unit::TestCase
   context 'a working copy' do
     setup do
       @info = <<-EOS
@@ -16,17 +16,14 @@ Last Changed Rev: 5019
 Last Changed Date: 2009-12-11 15:12:57 +0100 (vr, 11 dec 2009)
 
 EOS
-      @svn = Subcheat::Svn.new([])
+      @svn = Subcheat::SubversionWorkingCopy.new(Dir.pwd)
       @svn.stubs(:info).returns(@info)
     end
 
-    should "read attributes" do
-      assert_equal('https://some-kind-of-svn.com/svn/project_name/branches/languages', @svn.attr('URL'))
-      assert_equal('8049', @svn.attr('Revision'))
-    end
-
-    should 'find project base URL' do
-      assert_equal('https://some-kind-of-svn.com/svn/project_name/', @svn.base_url)
-    end
+    should 'read working copy attributes'
+    should 'call subversion commands'
+    should 'check if given directory is a working copy'
+    should 'instantiate with a working copy'
+    should 'not instantiate without a working copy'
   end
 end
