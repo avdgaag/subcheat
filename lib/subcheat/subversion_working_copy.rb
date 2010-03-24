@@ -30,7 +30,7 @@ module Subcheat
 
     # Retrieve information about the working copy.
     def info
-      @info ||= `svn info`
+      @info ||= `svn info #{@path}`
     end
   end
 end
