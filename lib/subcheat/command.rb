@@ -4,7 +4,7 @@ module Subcheat
     attr_reader :prerequisites
 
     def initialize(subcommand, prerequisites = [], &block) #:nodoc:
-      @subcommand, @prerequisites, @method = subcommand, prerequisites, block
+      @subcommand, @prerequisites, @method = subcommand, (prerequisites || []), block
     end
 
     def ===(other_subcommand)

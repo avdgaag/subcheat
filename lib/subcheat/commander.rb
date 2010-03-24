@@ -1,12 +1,12 @@
 module Subcheat
   class Commander
-    attr_reader :subcommand
+    attr_reader :subcommand_name
     attr_reader :arguments
     attr_reader :commands
 
     def initialize(*arguments)
-      @subcommand, *@arguments = arguments
-      @subcommand ||= 'help'
+      @subcommand_name, *@arguments = arguments
+      @subcommand_name ||= 'help'
       @arguments  ||= []
       @commands = []
       read_commands
@@ -14,7 +14,7 @@ module Subcheat
 
     def run(subversion_working_copy)
       commands.each do |command|
-        command.run(subversion_working_copy) if command === subcommand
+        command.run(subversion_working_copy) if command === subcommand_name
       end
     end
 
@@ -31,13 +31,13 @@ module Subcheat
     # subversion commands.
     def textcommand(subcommand_name, &block)
       subcommand, prerequisites = extract_name_and_prerequisites(subcommand_name)
-      @commands << TextCommand.new(subcommand, prerequisites, block)
+      @commands << TextCommand.new(subcommand, prerequisites, &block)
     end
 
     # A regular subcommand, that ultimately fires a subversion command.
     def subcommand(subcommand_name, &block)
       subcommand, prerequisites = extract_name_and_prerequisites(subcommand_name)
-      @commands << Command.new(subcommand, prerequisites, block)
+      @commands << Command.new(subcommand, prerequisites, &block)
     end
 
     # Take either <tt>:a</tt> or <tt>{ :a => [:b, :c] }</tt> and return
