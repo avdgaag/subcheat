@@ -12,13 +12,16 @@ module Subcheat
   # Syntactic sugar
   def run(*args)
     begin
-      Commander.new(args).run(SubversionWorkingCopy.new(Dir.pwd))
+      commander = Commander.new(args)
+      commander.run(SubversionWorkingCopy.new(Dir.pwd))
     rescue NotAWorkingCopy
       Subcheat.puts 'This is not a valid working copy.'
+      exit 1
     rescue NoSuchCommand
-      exec 'svn', subcommand, arguments
+      exec 'svn', commander.subcommand_name.to_s, *commander.arguments
     rescue CommandException
       Subcheat.puts $!
+      exit 1
     end
   end
 
