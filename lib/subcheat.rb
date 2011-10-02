@@ -1,8 +1,7 @@
-# Require all subcheat components
-%w{exceptions runner svn command}.each do |filename|
-  require File.join(File.dirname(__FILE__), 'subcheat', filename)
-end
-
+require 'subcheat/exceptions'
 module Subcheat
-  autoload :VERSION, 'subcheat/version'
+  autoload :Runner,           'subcheat/runner'
+  autoload :Command,          'subcheat/command'
+  autoload :Svn,              'subcheat/svn'
+  autoload :VERSION,          'subcheat/version'
 end
