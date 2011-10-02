@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>File: undo.rb [subcheat 0.4.0]</title>
+
+  <link type="text/css" media="screen" href="../../../rdoc.css" rel="stylesheet" />
+
+  <script src="../../../js/jquery.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="../../../js/thickbox-compressed.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="../../../js/quicksearch.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="../../../js/darkfish.js" type="text/javascript"
+    charset="utf-8"></script>
+</head>
+
+<body class="file file-popup">
+  <div id="metadata">
+    <dl>
+      <dt class="modified-date">Last Modified</dt>
+      <dd class="modified-date">2011-10-02 11:55:50 +0200</dd>
+
+      
+      <dt class="requires">Requires</dt>
+      <dd class="requires">
+        <ul>
+        
+        </ul>
+      </dd>
+      
+
+      
+    </dl>
+  </div>
+
+  <div id="documentation">
+    
+    <div class="description">
+      <h2>Description</h2>
+      
+<p>Undo a commit or range of commits.</p>
+
+<p>This reverse-merges one or more revision into the current working copy.</p>
+
+<pre>&gt; svn undo 45
+&gt; svn undo 45:50</pre>
+
+<p>This will merge in 45:44 and 50:45 respectively. The source to merge from
+is the current working copy URL by default, but you may specify your own:</p>
+
+<pre>&gt; svn undo 5034 ^/my-project/trunk</pre>
+
+    </div>
+    
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>File: branching.rb [subcheat 0.4.0]</title>
+
+  <link type="text/css" media="screen" href="../../../rdoc.css" rel="stylesheet" />
+
+  <script src="../../../js/jquery.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="../../../js/thickbox-compressed.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="../../../js/quicksearch.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="../../../js/darkfish.js" type="text/javascript"
+    charset="utf-8"></script>
+</head>
+
+<body class="file file-popup">
+  <div id="metadata">
+    <dl>
+      <dt class="modified-date">Last Modified</dt>
+      <dd class="modified-date">2011-10-02 11:55:50 +0200</dd>
+
+      
+      <dt class="requires">Requires</dt>
+      <dd class="requires">
+        <ul>
+        
+        </ul>
+      </dd>
+      
+
+      
+    </dl>
+  </div>
+
+  <div id="documentation">
+    
+    <div class="description">
+      <h2>Description</h2>
+      
+<p>Merge changes from trunk into a branch.</p>
+
+<pre>&gt; svn rebase</pre>
+
+<p>This will merge all changes from trunk to the current working copy from its
+branch point to the HEAD revision. This will only work when you’re inside a
+branch working copy.</p>
+
+<p>You can optionally specify the revision number to merge from:</p>
+
+<pre>&gt; svn rebase 5032</pre>
+
+<p>This will merge from 5032:HEAD.</p>
+
+    </div>
+    
+  </div>
+</body>
+</html>
+
