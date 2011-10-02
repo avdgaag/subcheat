@@ -16,7 +16,8 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_development_dependency 'thoughtbot-shoulda', '>= 0'
-  s.add_development_dependency 'cucumber', '>= 0'
+  s.add_development_dependency 'thoughtbot-shoulda'
+  s.add_development_dependency 'cucumber'
   s.add_development_dependency 'mocha', '>= 0.9.8'
+  s.add_development_dependency 'rcov'
 end
