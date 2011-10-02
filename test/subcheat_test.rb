@@ -1,8 +1,7 @@
 require 'test_helper'
 
-class TestSubcheat < Test::Unit::TestCase
-  should 'report version number' do
-    File.expects(:read).returns('foo')
-    assert_equal 'foo', Subcheat.version
+describe Subcheat do
+  it 'should report version number' do
+    Subcheat::VERSION.must_be_instance_of String
   end
 end

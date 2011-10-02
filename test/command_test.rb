@@ -1,21 +1,17 @@
 require 'test_helper'
 
-class TestRunner < Test::Unit::TestCase
-  context "creating a command" do
-    should "create a command" do
-      old_count = Subcheat::Command.commands.size
-      Subcheat::Command.define('name') { puts 'foo' }
-      assert_equal(old_count + 1, Subcheat::Command.commands.size)
-    end
+describe Subcheat::Command do
+  it 'should create a command' do
+    old_count = Subcheat::Command.commands.size
+    Subcheat::Command.define('name') { puts 'foo' }
+    Subcheat::Command.commands.size.must_equal old_count + 1
   end
 
-  context 'finding commands' do
-    should 'return a command for a name' do
-      assert_instance_of(Subcheat::Command, Subcheat::Command.on('undo'))
-    end
+  it 'should find a command by name' do
+    Subcheat::Command.on('undo').must_be_instance_of Subcheat::Command
+  end
 
-    should 'raise when loading non-exstant commands' do
-      assert_raise(Subcheat::NoSuchCommand) { Subcheat::Command.on('foo') }
-    end
+  it 'should raise when loading non-exstant commands' do
+    lambda { Subcheat::Command.on('foo') }.must_raise(Subcheat::NoSuchCommand)
   end
 end
