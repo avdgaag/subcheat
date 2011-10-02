@@ -19,6 +19,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake'
   s.add_development_dependency 'cucumber'
   s.add_development_dependency 'mocha', '>= 0.9.8'
-  s.add_development_dependency 'rcov'
+  s.add_development_dependency 'simplecov'
   s.add_development_dependency 'rdoc', '~> 3.9'
 end

@@ -1,5 +1,7 @@
 require 'bundler/gem_tasks'
 
+task :default => :test
+
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
@@ -7,17 +9,14 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/*_test.rb'
-  test.verbose = true
-end
-
 require 'cucumber/rake/task'
 Cucumber::Rake::Task.new(:features)
 
-task :default => :test
+desc 'Generate code coverage report'
+task :coverage do
+  ENV['COVERAGE'] = 'true'
+  Rake::Task['test'].invoke
+end
 
 require 'rdoc/task'
 RDoc::Task.new :doc do |t|
