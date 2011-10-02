@@ -12,8 +12,8 @@
 Subcheat::Command.define('undo') do
   revision, url = arguments[0], arguments[1]
   revision = case revision
-    when /^\d+$/: "#{revision}:#{revision.to_i - 1}"
-    when /^\d+:\d+$/: revision.split(':').reverse.join(':')
+    when /^\d+$/ then "#{revision}:#{revision.to_i - 1}"
+    when /^\d+:\d+$/ then revision.split(':').reverse.join(':')
     else
       raise Subcheat::CommandException, "Bad revision: #{revision}"
   end
