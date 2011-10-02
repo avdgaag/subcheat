@@ -1,4 +1,4 @@
-require 'helper'
+require 'test_helper'
 
 class TestSubcheat < Test::Unit::TestCase
   should 'report version number' do

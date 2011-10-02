@@ -1,4 +1,4 @@
-require 'helper'
+require 'test_helper'
 
 class TestRunner < Test::Unit::TestCase
   context 'No arguments' do
