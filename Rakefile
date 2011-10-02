@@ -1,24 +1,4 @@
-require 'rubygems'
-require 'rake'
-
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "subcheat"
-    gem.summary = %Q{Wrapper for Subversion CLI}
-    gem.description = %Q{Wrap the Subversion CLI to extract some usage patterns into commands}
-    gem.email = "arjan@arjanvandergaag.nl"
-    gem.homepage = "http://github.com/avdgaag/subcheat"
-    gem.authors = ["Arjan van der Gaag"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
-    gem.add_development_dependency "cucumber", ">= 0"
-    gem.add_development_dependency "mocha", ">= 0.9.8"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
-end
+require 'bundler/gem_tasks'
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
@@ -40,13 +20,9 @@ rescue LoadError
   end
 end
 
-task :test => :check_dependencies
-
 begin
   require 'cucumber/rake/task'
   Cucumber::Rake::Task.new(:features)
-
-  task :features => :check_dependencies
 rescue LoadError
   task :features do
     abort "Cucumber is not available. In order to run features, you must: sudo gem install cucumber"
