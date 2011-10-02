@@ -19,6 +19,7 @@ Subcheat is a simple wrapper around Subversion's svn command-line client.
 * <tt>subcheat root</tt>: output the current project root folder
 * <tt>subcheat path</tt>: output the current path in the repository
 * <tt>subcheat revision</tt>: output the current revision number
+* <tt>subcheat pretty-log</tt>: output friendly single-line logs
 
 Also, some existing subcommands are enhanced:
 
