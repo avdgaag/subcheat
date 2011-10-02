@@ -4,5 +4,5 @@
 end
 
 module Subcheat
-  extend :VERSION, 'subcheat/version'
+  autoload :VERSION, 'subcheat/version'
 end
