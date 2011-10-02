@@ -4,9 +4,5 @@
 end
 
 module Subcheat
-  # Report the version number from /VERSION
-  def version
-    File.read(File.join(File.dirname(__FILE__), *%w{.. VERSION}))
-  end
-  extend self
+  extend :VERSION, 'subcheat/version'
 end
