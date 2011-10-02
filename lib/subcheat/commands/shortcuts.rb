@@ -23,6 +23,11 @@ Subcheat::Command.define('cop') do
   "svn checkout #{url} #{arguments[1..-1].join(' ')}"
 end
 
+# Print pretty formatted log output
+Subcheat::Command.define('pretty-log') do
+  %Q{svn log --stop-on-copy -q | grep -E "r[0-9]+" | tail -1 | sed 's/r\([0-9][0-9]*\).*/\1/'}
+end
+
 # Enable exporting of tags
 #
 #   > svn export REL-1.0 ~/Desktop/export
