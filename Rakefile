@@ -19,12 +19,10 @@ Cucumber::Rake::Task.new(:features)
 
 task :default => :test
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "subcheat #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+require 'rdoc/task'
+RDoc::Task.new :doc do |t|
+  t.title = "subcheat #{Subcheat::VERSION}"
+  t.main = 'README.rdoc'
+  t.rdoc_dir = 'doc'
+  t.rdoc_files.include('README.rdoc', 'lib/**/*.rb')
 end
